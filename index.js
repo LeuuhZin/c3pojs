@@ -110,6 +110,6 @@ module.exports.botRun = () => {
         }
     });
 
-    bot.login('NDg4MDIyMzMzNTAwNDI0MjAz.DobRGA.aE9FxFXRNZWtmnQbu7xceGbBXwE');
+    bot.login(process.env.TOKEN);
 
 }
