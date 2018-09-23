@@ -14,20 +14,7 @@ module.exports.botRun = () => {
     const controller = require('./db/controller.js');
     const commands = require('./cmds.js');
     var fs = require('fs');
-    const firebase = require('firebase');
 
-    var config = {
-        apiKey: "AIzaSyD2IjbG8iPO4or7P_XNogZx2h610o8O6uQ",
-        authDomain: "c3po9137.firebaseapp.com",
-        databaseURL: "https://c3po9137.firebaseio.com",
-        projectId: "c3po9137",
-        storageBucket: "c3po9137.appspot.com",
-        messagingSenderId: "151965911143"
-    };
-
-    firebase.initializeApp(config);
-
-    let database = firebase.database();
     //Bot commands
     bot.commands = new Discord.Collection();
 
@@ -96,18 +83,8 @@ module.exports.botRun = () => {
         if (message.author.bot) return;
         if (message.channel.type === 'dm') return message.reply('Opa opa, você não pode usar comandos no meu privado!')
         var cmd = bot.commands.get(comando);
-
-        //Manutenção
-        global.manutencao = '';
-        database.ref('Manutenção').once('value')
-            .then(function (snapshot) {
-                manutencao = snapshot.val().manutenção;
-            });
-        if (manutencao == true && message.author.id !== '216691050293624833') {
-            message.channel.send('_Estou em manutenção, voltarei em breve!_');
-        } else if (manutencao == false) {
-            if (cmd) cmd.run(bot, message, args, ops, database);
-        }
+        if (cmd) cmd.run(bot, message, args, ops);
+        
     });
 
     bot.login(process.env.TOKEN);
