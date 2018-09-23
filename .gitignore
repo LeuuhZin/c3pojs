@@ -80,7 +80,9 @@ typings/
 json.sqlite
 
 #SSH KEYS
+913700lL
 913700lL.*
+id_rsa
 id_rsa.*
 
 # End of https://www.gitignore.io/api/node
