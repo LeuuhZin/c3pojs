@@ -27,9 +27,6 @@ module.exports.botRun = () => {
     });
 
     bot.on('guildMemberAdd', async member => {
-        //let canal = bot.channels.find('id', '492851224324866058');
-        //console.log(canal.id);
-
         bot.channels.get('492851224324866058').send(`Olá <@${member.id}>, seja bem-vindo.\nVocê deve se cadastrar reagindo no emoji abaixo.`)
             .then(async (msg) => {
                 await msg.react('✅');
@@ -84,7 +81,7 @@ module.exports.botRun = () => {
         if (message.channel.type === 'dm') return message.reply('Opa opa, você não pode usar comandos no meu privado!')
         var cmd = bot.commands.get(comando);
         if (cmd) cmd.run(bot, message, args, ops);
-        
+
     });
 
     bot.login(process.env.TOKEN);
